@@ -1,0 +1,19 @@
+{
+  "name": "milestone2",
+  "version": "1.0.0",
+  "description": "DevOps Milestone2: test and analysis ",
+  "main": "subject.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevOpsGHZ/M2-Test_Analysis.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevOpsGHZ/M2-Test_Analysis/issues"
+  },
+  "homepage": "https://github.com/DevOpsGHZ/M2-Test_Analysis#readme"
+}
