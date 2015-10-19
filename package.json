@@ -4,7 +4,7 @@
   "description": "DevOps Milestone2: test and analysis ",
   "main": "subject.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,8 @@
     "mockfs": "^0.1.5",
     "node-gyp": "^3.0.3",
     "random-js": "^1.0.5",
-    "underscore": "^1.7.0"
-  }
+    "underscore": "^1.7.0",
+    "chai": "*",
+    "mocha": "*"
+    }
 }
