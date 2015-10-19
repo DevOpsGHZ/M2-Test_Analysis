@@ -15,10 +15,6 @@
   "bugs": {
     "url": "https://github.com/DevOpsGHZ/M2-Test_Analysis/issues"
   },
-  "devDependencies": {
-  "chai": "*",
-  "mocha": "*"
-  },
   "homepage": "https://github.com/DevOpsGHZ/M2-Test_Analysis#readme",
   "dependencies": {
     "esprima": "^2.6.0",
