@@ -1,37 +1,0 @@
-
-> milestone2@1.0.0 test /Users/Huangying/Repositories/DevOps_M2
-> mocha test
-
-
-
-  subject
-    inc function
-      ✓ caculates -p+1/1 when p<0 and q==undefined 
-      ✓ caculates -p+q/q when p<0 and q!=undefined
-      ✓ caculates p+q/q when p>0 and q==undefined
-      ✓ caculates p+q/q when p>0 and q!=undefined
-      ✓ caculates p+q/q when p=0 and q==undefined
-      ✓ caculates p+q/q when p=0 and q!=undefined
-    weird funcion
-      ✓ return 1 when x>7, y<0
-      ✓ return 1 when z<42
-      ✓ return 1 when z<42 and mode[0]==werw 
-      ✓ return 1 when (x<=7 or y>=0) and z>42 and mode!=strict 
-      ✓ return 1 when (x<=7 or y>=0) and z>42 and mode==strict 
-    fileTest funcion
-      ✓ return false when there is no file under path/fileExists
-      ✓ return false when file in pathContent/file1 has no content
-      ✓ return true when there is file with content in filePath
-    normalize funcion
-      ✓ return raw phone number when match
-      ✓ return input when doesn't match
-    format funcion
-      ✓ return format
-      ✓ return format
-    blackListNumber funcion
-      ✓ return true when area code is 212
-      ✓ return false when area code is not 212
-
-
-  20 passing (18ms)
-
