@@ -42,7 +42,8 @@ function main()
 			break;
 		}
 	}
-	console.log(new_file);
+	if(new_file.length > 0) console.log("Files to be committed: ", new_file);
+
 	var suspects = [];
 	for( var i = 0; i < new_file.length; i++)
 	{
@@ -80,7 +81,8 @@ function main()
 		else
 		{
 			var content = fs.readFileSync(new_file[i], "utf8");
-			if(content.indexOf(' ') < 0 && content.length > 20)
+			if(content.length > 100 
+				&& (content.indexOf('ssh-rsa') > -1 || content.indexOf('PRIVATE KEY') > -1))
 			{
 				suspects.push(content);
 			}
