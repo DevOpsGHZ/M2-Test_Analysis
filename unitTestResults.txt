@@ -33,5 +33,5 @@
       ✓ return false when area code is not 212
 
 
-  20 passing (18ms)
+  20 passing (17ms)
 
