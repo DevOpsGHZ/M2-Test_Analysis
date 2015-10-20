@@ -1,7 +1,7 @@
 var esprima = require("esprima");
 var options = {tokens:true, tolerant: true, loc: true, range: true };
 var fs = require("fs");
-
+var token = "sdofhsaohgojsjsohfuqierqwtklasgoijgjdifgjoiahsodfhoijwjer";
 function main()
 {
 	var args = process.argv.slice(2);
@@ -11,8 +11,8 @@ function main()
 		args = ["subject.js"];
 	}
 	var filePath = args[0];
-	
-	checking(filePath);
+
+	// checking(filePath);
 	// console.log(process.env.PWD);
 	var git = fs.readFileSync("stage.txt", "utf8");
 	// console.log(git.split('\n'));
@@ -43,6 +43,7 @@ function main()
 		}
 	}
 	console.log(new_file);
+	var suspects = [];
 	for( var i = 0; i < new_file.length; i++)
 	{
 		if( new_file[i].indexOf('.') > -1)
@@ -52,19 +53,41 @@ function main()
 			// console.log(type);
 			if(type.toLowerCase() == 'js')
 			{
-				checking(new_file[i]);
+				var tmp = checking(new_file[i]);
+				for(var j = 0; j < tmp.length; j++) suspects.push(tmp[j]);
 			}
 			else if(type.toLowerCase() == 'json')
 			{
-				console.log(new_file[i]);
+				// console.log(new_file[i]);
+				var json_data = require('./package.json');
+				// console.log(json_data);
+				traverse_json(json_data,function(key, value)
+				{
+					if(typeof value == 'string' && value.indexOf('http') < 0 
+						&& value.length > 20 && value.indexOf(' ') < 0)
+					{
+						// console.log(value);	
+						suspects.push(value);
+					}
+				});
+			}
+			else if(type.toLowerCase() == 'pem' || type.toLowerCase() == 'key')
+			{
+				var key = fs.readFileSync(new_file[i], "utf8");
+				suspects.push(key);
 			}
 		}
 		else
 		{
-			;
-		}
+			var content = fs.readFileSync(new_file[i], "utf8");
+			if(content.indexOf(' ') < 0 && content.length > 20)
+			{
+				suspects.push(content);
+			}
+		};
 
-	}
+	};
+	console.log(suspects);
 	// Report
 	// for( var node in builders )
 	// {
@@ -84,9 +107,9 @@ function checking(filePath)
 		if( node.type == 'Literal')
 		{
 			// console.log(node.value);
-			if(node.value !== null && node.value.length > 20)
+			if(node.value !== null && node.value.length > 20 && node.value.indexOf(' ') < 0)
 			{
-				console.log(node.loc);
+				// console.log(node.loc);
 				suspect.push(node.value);
 			}
 		}
@@ -116,17 +139,8 @@ function checking(filePath)
 	// 		}
 	// 	}
 	});
-	console.log(suspect);
-	for( var i = 0; i < suspect.length; i++)
-	{
-		var headers =
-		{
-			'Content-Type':'application/json',
-			Authorization: 'Bearer ' + suspect[i]
-		};
-
-	}
-
+	// console.log(suspect);
+	return suspect;
 }
 
 function traverse(object, visitor) 
@@ -160,6 +174,18 @@ function traverseWithCancel(object, visitor)
 	        }
 	    }
  	 }
+}
+// function process_json(key,value) {
+//     console.log(key + " : "+value);
+// }
+
+function traverse_json(o,func) {
+    for (var i in o) {
+        func.apply(this,[i,o[i]]);  
+        if (o[i] !== null && typeof(o[i])=="object") {
+            traverse_json(o[i],func);
+        }
+    }
 }
 
 main();
