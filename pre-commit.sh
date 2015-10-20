@@ -16,6 +16,22 @@ else
 	echo "All unit test cases passed!"
 fi
 
+echo "-----Running JSHint to analyse source code ------"
+sleep .5
+jshint *.js > jshintResults.txt
+cat jshintResults
+errors="$(grep -o "errors" jshintResults.txt)"
+warnings="$(grep -o "warnings" jshintResults.txt)"
+# echo $fail
+if [[ "$errors" == "errors" ]]; then
+    echo "JsHint errors in source file!"
+    exit 1
+else if [[ "$warnings" == "warnings" ]]; then
+    echo "JsHint warnings in source file!"
+    exit 1
+else
+    echo "All unit test cases passed!"
+fi
 
 echo "-----Generate test case & Running Istanbul ------"
 sleep .5
