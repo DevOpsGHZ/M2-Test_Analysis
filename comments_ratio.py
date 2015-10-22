@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
 import re
+import sys
 
-with open("subject.js", "r") as f:
+with open(sys.argv[1], "r") as f:
 	buf = f.read()
 
 comment_num = 0
@@ -17,7 +18,7 @@ comment_num += len(res)
 for i in res:
 	comment_num += len(re.findall(r"\n", i))
 
-with open("subject.js", "r") as f:
+with open(sys.argv[1], "r") as f:
 	buf = f.readlines()
 
 code_num = len(buf)
