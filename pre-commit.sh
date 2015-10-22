@@ -18,15 +18,18 @@ fi
 
 echo "-----Running JSHint to analyse source code ------"
 sleep .5
+
+
+
 jshint --config jshint.conf *.js > jshintResults.txt
-cat jshintResults
+cat jshintResults.txt
 errors="$(grep -o "errors" jshintResults.txt)"
 warnings="$(grep -o "warnings" jshintResults.txt)"
-# echo $fail
+
 if [[ "$errors" == "errors" ]]; then
     echo "JsHint errors in source file!"
     exit 1
-else if [[ "$warnings" == "warnings" ]]; then
+elif [[ "$warnings" == "warnings" ]]; then
     echo "JsHint warnings in source file!"
     exit 1
 else
@@ -69,21 +72,21 @@ sleep .5
 git status > stage.txt
 node security_checking.js
 
-rm unitTestResults.txt
-rm coverage.txt
-rm stage.txt
-rm report.txt
+# rm unitTestResults.txt
+# rm coverage.txt
+# rm stage.txt
+# rm report.txt
 
-exec < /dev/tty
+# exec < /dev/tty
 
-while true; do
-    read -p "Do you wish to perform this Commit? [Y/n]" yn
-    if [ "$yn" = "" ]; then
-        yn='Y'
-    fi
-    case $yn in
-        [Yy]* ) break;;
-        [Nn]* ) echo "Commit discard!";exit 1;;
-    * ) echo "Please answer yes or no.";;
-    esac
-done
+# while true; do
+#     read -p "Do you wish to perform this Commit? [Y/n]" yn
+#     if [ "$yn" = "" ]; then
+#         yn='Y'
+#     fi
+#     case $yn in
+#         [Yy]* ) break;;
+#         [Nn]* ) echo "Commit discard!";exit 1;;
+#     * ) echo "Please answer yes or no.";;
+#     esac
+# done
