@@ -45,8 +45,10 @@ function main()
 	if(new_file.length > 0) console.log("Files to be committed: ", new_file);
 
 	var suspects = [];
+	var ss = {};
 	for( var i = 0; i < new_file.length; i++)
 	{
+		ss[new_file[i]] = []
 		if( new_file[i].indexOf('.') > -1)
 		{
 			var tmp = new_file[i].split('.');
@@ -55,7 +57,10 @@ function main()
 			if(type.toLowerCase() == 'js')
 			{
 				var tmp = checking(new_file[i]);
-				for(var j = 0; j < tmp.length; j++) suspects.push(tmp[j]);
+				for(var j = 0; j < tmp.length; j++) {
+					suspects.push(tmp[j]);
+					ss[new_file[i]].push(tmp[j]);
+				}
 			}
 			else if(type.toLowerCase() == 'json')
 			{
@@ -69,6 +74,7 @@ function main()
 					{
 						// console.log(value);	
 						suspects.push(value);
+						ss[new_file[i]].push(value);
 					}
 				});
 			}
@@ -76,6 +82,7 @@ function main()
 			{
 				var key = fs.readFileSync(new_file[i], "utf8");
 				suspects.push(key);
+				ss[new_file[i]].push(key);
 			}
 		}
 		else
@@ -85,11 +92,29 @@ function main()
 				&& (content.indexOf('ssh-rsa') > -1 || content.indexOf('PRIVATE KEY') > -1))
 			{
 				suspects.push(content);
+				ss[new_file[i]].push(content);
 			}
 		};
 
 	};
-	console.log(suspects);
+
+	for( file in ss)
+	{
+		if(ss[file].length > 0)
+		{
+			console.log("\nSuspects detected in " + file + "!!\n ===> " + ss[file]);
+		}
+		else
+		{
+			console.log("\nSuspects detected not in " + file + "." );	
+		}
+	}
+	// if(suspects.length > 0) console.log(suspects);
+	// else console.log("No security token detected!")
+
+	// console.log(ss);
+	
+
 	// Report
 	// for( var node in builders )
 	// {
