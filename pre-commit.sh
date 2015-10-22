@@ -18,7 +18,10 @@ fi
 
 echo "-----Running JSHint to analyse source code ------"
 sleep .5
-jshint *.js > jshintResults.txt
+
+
+
+jshint --config jshint.conf *.js > jshintResults.txt
 cat jshintResults.txt
 errors="$(grep -o "errors" jshintResults.txt)"
 warnings="$(grep -o "warnings" jshintResults.txt)"
