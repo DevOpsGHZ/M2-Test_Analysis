@@ -97,17 +97,22 @@ function main()
 		};
 
 	};
-
+	var flag = 0;
 	for( file in ss)
 	{
 		if(ss[file].length > 0)
 		{
 			console.log("\nSuspects detected in " + file + "!!\n ===> " + ss[file]);
+			flag = 1;
 		}
 		else
 		{
 			console.log("\nSuspects detected not in " + file + "." );	
 		}
+	}
+	if(flag == 0)
+	{
+		console.log("No suspects detected in all committed files!")
 	}
 	// if(suspects.length > 0) console.log(suspects);
 	// else console.log("No security token detected!")
