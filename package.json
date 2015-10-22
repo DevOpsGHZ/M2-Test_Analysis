@@ -28,5 +28,6 @@
     "underscore": "^1.7.0",
     "chai": "*",
     "mocha": "*"
-    }
+    },
+  "jshintConfig": "jshint_conf"
 }
