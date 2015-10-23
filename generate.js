@@ -1,3 +1,9 @@
+/* 
+Automatically generate test cases for javascript file, following the 
+Workshop - Test Generation.
+*/
+
+
 var esprima = require("esprima");
 var options = {tokens:true, tolerant: true, loc: true, range: true };
 var faker = require("faker");
@@ -13,13 +19,13 @@ function main()
 
 	if( args.length === 0 )
 	{
-		args = ["subject.js"];
+		args = ["main.js"];
 	}
 	var filePath = args[0];
 
 	constraints(filePath);
 
-	generateTestCases();
+	generateTestCases(filePath);
 
 }
 
@@ -98,10 +104,11 @@ function generateFileLibrary()
 	}
 }
 
-function generateTestCases()
-{
-
-	var content = "var subject = require('./subject.js')\nvar mock = require('mock-fs');\n";
+function generateTestCases(filePath)
+{	
+	var fileName = filePath.substring(0, filePath.length - 3);
+	console.log(fileName);
+	var content = "var {0} = require('./{1}')\nvar mock = require('mock-fs');\n".format(fileName, filePath);
 	operators = ['==', '>=', '<=', '!=', '>', '<'];
 	for ( var funcName in functionConstraints )
 	{
@@ -221,11 +228,11 @@ function generateTestCases()
 		{
 			for( i = 0; i < args_list.length; i++)
 			{
-				content += generateMockFsTestCases(pathExists,fileWithContent,funcName, args_list[i]);
+				content += generateMockFsTestCases(fileName, pathExists,fileWithContent,funcName, args_list[i]);
 				// Bonus...generate constraint variations test cases....
-				content += generateMockFsTestCases(!pathExists,fileWithContent,funcName, args_list[i]);
-				content += generateMockFsTestCases(pathExists,!fileWithContent,funcName, args_list[i]);
-				content += generateMockFsTestCases(!pathExists,!fileWithContent,funcName, args_list[i]);
+				content += generateMockFsTestCases(fileName, !pathExists,fileWithContent,funcName, args_list[i]);
+				content += generateMockFsTestCases(fileName, pathExists,!fileWithContent,funcName, args_list[i]);
+				content += generateMockFsTestCases(fileName, !pathExists,!fileWithContent,funcName, args_list[i]);
 			}
 		}
 		else
@@ -233,7 +240,7 @@ function generateTestCases()
 			// Emit simple test case.
 			for( i = 0; i < args_list.length; i++)
 			{
-				content += "subject.{0}({1});\n".format(funcName, args_list[i] );	
+				content += "{0}.{1}({2});\n".format(fileName, funcName, args_list[i] );	
 			}
 		}
 	}
@@ -260,11 +267,11 @@ function addMoreTestCase(params_list, params, i)
 	return params_list.concat(more_params);
 }
 
-function generateMockFsTestCases (pathExists,fileWithContent,funcName,args) 
+function generateMockFsTestCases (fileName, pathExists,fileWithContent,funcName,args) 
 {
 	var testCase = "";
 	// Build mock file system based on constraints.
-	for(var i = 0; i < 20; i++)
+	for(var i = 0; i < 5; i++)
 	{
 		var mergedFS = {};
 		generateFileLibrary();
@@ -287,7 +294,7 @@ function generateMockFsTestCases (pathExists,fileWithContent,funcName,args)
 		JSON.stringify(mergedFS) +
 	");\n";
 
-	testCase += "\tsubject.{0}({1});\n".format(funcName, args );
+	testCase += "\t{0}.{1}({2});\n".format(fileName, funcName, args );
 	testCase+="mock.restore();\n";
 	}
 	return testCase;
