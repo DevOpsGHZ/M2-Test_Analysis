@@ -9,7 +9,7 @@ describe("subject",function(){
 	describe("checkYear function",function(){
 		it("return 1 when input leap year 2012",function(){
 			var year1 = target.checkLeapYear(2012);
-			expect(year1).to.equal(0);
+			expect(year1).to.equal(1);
 		});
 		it("return 1 when input leap year 2000",function(){
 			var year2 = target.checkLeapYear(2000);
