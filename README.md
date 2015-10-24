@@ -205,4 +205,11 @@ Suspects detected in security_checking.js!!
 Do you wish to perform this Commit? [Y/n]y
 [master 2ac9f1e] update security checking
  2 file changed, 6 insertions(+), 1 deletion(-)
+ 
 ```
+
+##Results
+###A successful commit:
+![success](successful.gif)
+###A rejected commit because of failed unit test:
+![unitFailed](unitTestFail.gif)
