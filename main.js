@@ -36,7 +36,7 @@ function checkZipCode(x){
     return false;
   }
 
-  if(x.indexof("276") === 0)
+  if(x.indexOf("276") === 0)
   {
     return true;
   }
