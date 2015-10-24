@@ -225,6 +225,10 @@ A rejected commit because of failed unit test:
 
 ![unitFailed](gif/unitTestFail.gif)
 
+A rejected commit when coverage below 50%:
+
+![coverage](gif/reject_when_coverage.gif)
+
 Decide whether to reject a commit when JSHint finds errors: [video](https://drive.google.com/file/d/0B87f7178bIHnR2gwYjBrUGpyYlE/view?usp=sharing)
 
 Decide whether to reject a commit when security tokens detected: [video](https://drive.google.com/file/d/0B87f7178bIHnNkdacXRlS1ZMNVU/view?usp=sharing)
