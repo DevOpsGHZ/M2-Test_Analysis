@@ -2,11 +2,13 @@
 ## Test Part
 ### Unit Test
 **Setting up:**   
-We use [mocha](https://mochajs.org/) and [chai](http://chaijs.com/) for unit testing. Install by using command:   
+We use [mocha](https://mochajs.org/) and [chai](http://chaijs.com/) for unit testing. Install  using command:   
 
 	$ npm install -g mocha     
-	$ npm install chai`  
+	$ npm install chai 
 Add following lines in package.json file:     
+ 
+```
  "scripts": {   
     "test": "mocha test"   
   }
@@ -15,6 +17,9 @@ Add following lines in package.json file:
     "chai": "\*",    
     "mocha": "\*"    
     }    
+
+``` 
+       
 **Testing**  
 Put the `TargetTest.js` in folder `test` and use command
 
@@ -200,8 +205,13 @@ Suspects detected in security_checking.js!!
 Do you wish to perform this Commit? [Y/n]y
 [master 2ac9f1e] update security checking
  2 file changed, 6 insertions(+), 1 deletion(-)
+ 
 ```
 
 ## Screencasts
-Decide whether to reject a commit when JSHint finds errors: [video](https://drive.google.com/file/d/0B87f7178bIHnR2gwYjBrUGpyYlE/view?usp=sharing)
-Decide whether to reject a commit when security tokens detected: [video](https://drive.google.com/file/d/0B87f7178bIHnNkdacXRlS1ZMNVU/view?usp=sharing)
+A successful commit: ![success](successful.gif)
+A rejected commit because of failed unit test: ![unitFailed](unitTestFail.gif)
+Decide whether to reject a commit when JSHint finds errors: ![video](https://drive.google.com/file/d/0B87f7178bIHnR2gwYjBrUGpyYlE/view?usp=sharing)
+Decide whether to reject a commit when security tokens detected: ![video](https://drive.google.com/file/d/0B87f7178bIHnNkdacXRlS1ZMNVU/view?usp=sharing)
+
+
