@@ -21,10 +21,10 @@ function main()
         	var index = data.indexOf('failing');
         	//console.log(index);
         	if (index == -1){
-        		unitTestflag = true;
+        		unitTestflag = false;
         	}
         	else{
-        		unitTestflag = false;
+        		unitTestflag = true;
         	}
         	console.log('All unit Tests passed?: '+unitTestflag);
         });
