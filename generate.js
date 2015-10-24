@@ -400,24 +400,6 @@ function constraints(filePath)
 								expression: expression
 							}));
 					}
-					if( child.left.type == 'Identifier' && child.left.name == 'area')
-					{
-						// console.log(child);
-						var expression = buf.substring(child.range[0], child.range[1]);
-						// var rightHand = buf.substring(child.right.range[0], child.right.range[1])
-						var code = child.right.value;
-
-						functionConstraints[funcName].constraints.push( 
-							new Constraint(
-							{
-								ident: 'phoneNumber',
-								value: '\'1-{0}-458-5294\''.format(code),
-								funcName: funcName,
-								kind: 'phoneNumber',
-								operator : child.operator,
-								expression: expression
-							}));
-					}
 				}
 
 
