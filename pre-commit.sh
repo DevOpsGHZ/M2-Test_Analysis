@@ -27,7 +27,7 @@ sleep 1.5
 echo "Generating test cases ......"
 sleep 1
 node generate.js
-node_modules/.bin/istanbul cover test.js > coverage.txt
+node_modules/.bin/istanbul cover test.js -x test.js > coverage.txt
 cat coverage.txt
 sed -n '3,6p' coverage.txt > report.txt
 rm coverage.txt
