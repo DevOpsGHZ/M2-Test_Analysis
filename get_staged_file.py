@@ -26,6 +26,6 @@ js =  open("staged_js.txt", 'w')
 
 for f in staged_js:
 	print f
-	if '.js' in f:
+	if f[-3:] == 'js':
 		print >> js, f
 js.close()
