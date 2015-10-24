@@ -20,12 +20,7 @@ add following lines in package.json file:
 In test/test.js file, we wrote 20 unit test for subject.js   
 **Unit test report:**   
 run `npm test`  to get the report:   
-
-
-**Extract the result:**  
-write main.js to parse the report and extract the result.    
-run `node main.js` will tell the result if all unit tests passed:
-![unitResult](unitResult.png)
+![unitReport](unitReport.png)
 
 =======
 
