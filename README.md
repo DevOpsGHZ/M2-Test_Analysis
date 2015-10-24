@@ -30,19 +30,27 @@ to perform the test and show the result:
 
 ### Test Coverage
 
-We use [istanbul](https://gotwarlost.github.io/istanbul/) to measure the coverage of test. And to improve coverage, we use the constraint-based test generation method to automatically generate more test cases. Use the following command to generate test cases and calculate coverage.
+We use [istanbul](https://gotwarlost.github.io/istanbul/) to measure the coverage of test. And to improve coverage, we use the constraint-based test generation method to automatically generate more test cases. 
 
-	node generate.js
-	node_modules/.bin/istanbul cover test.js
-
-it will show a report like this:
+First we run our unit test and get a report like this:
 
 	=============================== Coverage summary ===============================
-	Statements   : 91.15% ( 103/113 )
-	Branches     : 64.29% ( 18/28 )
-	Functions    : 100% ( 5/5 )
-	Lines        : 91.15% ( 103/113 )
+	Statements   : 65.15% ( 43/66 )
+	Branches     : 62.5% ( 30/48 )
+	Functions    : 100% ( 4/4 )
+	Lines        : 65.15% ( 43/66 )
 	================================================================================
+
+
+We then use the following command to generate test cases and calculate coverage.
+The coverage get significant improvement.
+
+	=============================== Coverage summary ===============================
+	Statements   : 84.85% ( 56/66 )
+	Branches     : 81.25% ( 39/48 )
+	Functions    : 100% ( 4/4 )
+	Lines        : 84.85% ( 56/66 )
+		================================================================================
 
 ## Analysis Part
 ### Static Analysis

@@ -155,6 +155,11 @@ function generateTestCases(filePath)
 					params[constraint.ident].push(constraint.value + 1)
 					params[constraint.ident].push(constraint.value - 1)
 				}
+                else if(constraint.kind == "list")
+                {
+                    for(var i = 1; i < 12; i++)
+                        params[constraint.ident].push(i);
+                }
 				else if(constraint.kind == 'string')
 				{	
 					var str = createRandomString(10);
@@ -173,7 +178,7 @@ function generateTestCases(filePath)
 				}
 				if(constraint.kind == 'indexOf')
 				{	
-					 str = createRandomString(5);
+					str = createRandomString(5);
 					params[constraint.ident].push("'" + str + constraint.value + "'");
 					params[constraint.ident].push(constraint.value);	
 				}
@@ -452,6 +457,18 @@ function constraints(filePath)
 							}));
 						}
 					}
+                    if( child.callee.property.name == "indexOf" )
+                    {
+                        //here
+                            functionConstraints[funcName].constraints.push(
+                            new Constraint(
+                            {
+                                ident: child.arguments[0].name,
+                                value: 1,
+                                funcName: funcName,
+                                kind: "list"
+                            }));
+                    }
 				}
 
 				if( child.type == "CallExpression" &&
