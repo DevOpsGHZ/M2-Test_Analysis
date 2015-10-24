@@ -7,6 +7,8 @@ We use [mocha](https://mochajs.org/) and [chai](http://chaijs.com/) for unit tes
 	$ npm install -g mocha     
 	$ npm install chai 
 Add following lines in package.json file:     
+ 
+```
  "scripts": {   
     "test": "mocha test"   
   }
@@ -15,6 +17,9 @@ Add following lines in package.json file:
     "chai": "\*",    
     "mocha": "\*"    
     }    
+
+``` 
+       
 **Testing**  
 Put the `TargetTest.js` in folder `test` and use command
 
