@@ -10,17 +10,20 @@
     "type": "git",
     "url": "git+https://github.com/DevOpsGHZ/M2-Test_Analysis.git"
   },
-  "author": "",
+  "author": "Kelei Gong",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/DevOpsGHZ/M2-Test_Analysis/issues"
   },
   "homepage": "https://github.com/DevOpsGHZ/M2-Test_Analysis#readme",
   "dependencies": {
+    "chai": "*",
     "esprima": "^2.6.0",
     "faker": "^2.1.2",
     "istanbul": "^0.3.5",
+    "jshint": "^2.8.0",
     "microtime": "^0.6.0",
+    "mocha": "*",
     "mock-fs": "^2.3.2",
     "mockfs": "^0.1.5",
     "node-gyp": "^3.0.3",
@@ -28,5 +31,7 @@
     "underscore": "^1.7.0",
     "chai": "*",
     "mocha": "*"
-    }
+    },
+  "jshintConfig": "jshint_conf"
+  }
 }

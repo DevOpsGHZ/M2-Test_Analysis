@@ -1,9 +1,11 @@
 #!/bin/bash
-# echo "Running pre-commit script"
-# sh ./pre-commit.sh
-echo "----------------Pre Commit script----------------"
+
+echo "--------------------Pre Commit script--------------------"
 sleep 1
-echo "----------------Running UnitTest ----------------"
+
+
+echo
+echo "--------------------Running UnitTest --------------------"
 sleep .5
 npm test > unitTestResults.txt
 cat unitTestResults.txt
@@ -11,34 +13,24 @@ fail="$(grep -o "failing" unitTestResults.txt)"
 # echo $fail
 if [[ "$fail" == "failing" ]]; then
 	echo "UnitTest fails, commit reject!"
+    rm unitTestResults.txt
 	exit 1
 else
+    rm unitTestResults.txt
 	echo "All unit test cases passed!"
 fi
 
-echo "-----Running JSHint to analyse source code ------"
-sleep .5
-jshint --config jshint.conf *.js > jshintResults.txt
-cat jshintResults
-errors="$(grep -o "errors" jshintResults.txt)"
-warnings="$(grep -o "warnings" jshintResults.txt)"
-# echo $fail
-if [[ "$errors" == "errors" ]]; then
-    echo "JsHint errors in source file!"
-    exit 1
-else if [[ "$warnings" == "warnings" ]]; then
-    echo "JsHint warnings in source file!"
-    exit 1
-else
-    echo "All unit test cases passed!"
-fi
 
-echo "-----Generate test case & Running Istanbul ------"
-sleep .5
+echo
+echo "------------------- Running Istanbul --------------------"
+sleep 1.5
+echo "Generating test cases ......"
+sleep 1
 node generate.js
 node_modules/.bin/istanbul cover test.js > coverage.txt
 cat coverage.txt
 sed -n '3,6p' coverage.txt > report.txt
+rm coverage.txt
 while read line
 do
     # length=$(echo -n "$line" | wc -c)
@@ -62,17 +54,71 @@ do
         exit 1
     fi
 done < report.txt
-
-
-echo "-----------Running Security Checking-------------"
-sleep .5
-git status > stage.txt
-node security_checking.js
-
-rm unitTestResults.txt
-rm coverage.txt
-rm stage.txt
 rm report.txt
+
+
+echo "---------Running JSHint to analyse source code ----------"
+sleep 1.5
+
+git status > stage.txt
+python get_staged_file.py > staged_file.txt
+
+while read line
+do
+    jshint --config jshint.conf $line >> jshintResults.txt
+done < staged_js.txt
+
+jshintResults=jshintResults.txt
+
+if [ -e "$jshintResults" ]; then
+    cat jshintResults.txt
+    errors="$(grep -o "errors" jshintResults.txt)"
+    warnings="$(grep -o "warnings" jshintResults.txt)"
+
+    if [[ "$errors" == "errors" ]]; then
+        echo "JsHint errors in source file!"
+        rm jshintResults.txt
+        exec < /dev/tty
+        while true; do
+            read -p "Do you wish to continue this Commit? [Y/n]" yn
+            if [ "$yn" = "" ]; then
+                yn='Y'
+            fi
+            case $yn in
+                [Yy]* ) break;;
+                [Nn]* ) echo "Commit discard!";exit 1;;
+            * ) echo "Please answer yes or no.";;
+            esac
+        done
+        # exit 1
+    elif [[ "$warnings" == "warnings" ]]; then
+        echo "JsHint warnings in source file!"
+        rm jshintResults.txt
+        # exit 1
+    else
+        rm jshintResults.txt
+        echo 
+    fi
+else
+    echo "No js file to be committed"
+fi
+
+
+
+echo
+echo "-------------Running Comments Ratio Checking---------------"
+sleep 1.5
+# git status > stage.txt
+python comments_ratio.py
+rm staged_js.txt
+
+echo
+echo "-----------------Running Security Checking-----------------"
+sleep 1.5
+node security_checking.js
+rm stage.txt
+rm staged_file.txt
+echo
 
 exec < /dev/tty
 
