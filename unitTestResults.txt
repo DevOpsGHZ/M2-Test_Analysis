@@ -1,54 +1,0 @@
-
-> milestone2@1.0.0 test /Users/Huangying/Repositories/DevOps_M2
-> mocha test
-
-
-
-  subject
-    checkYear function
-      ✓ return 1 when input leap year 2012
-      ✓ return 1 when input leap year 2000
-      ✓ return 0 when input year 2015
-    checkResult function
-      ✓ return true when there is failing
-      ✓ return false when there is no failing
-      ✓ return error when there is no content in file
-      ✓ return error when there is no file
-      ✓ return error when there is no file
-      getTomorrowDate function
-        ✓ return 2015/10/24 when input 2015,10,23
-        ✓ return 2012/3/1 when input 2012,2,29
-      extractDate function
-        ✓ return {year:2015,month:10,day:23} when input 2015/10/23
-
-  subject
-    inc function
-      ✓ caculates -p+1/1 when p<0 and q==undefined 
-      ✓ caculates -p+q/q when p<0 and q!=undefined
-      ✓ caculates p+q/q when p>0 and q==undefined
-      ✓ caculates p+q/q when p>0 and q!=undefined
-      ✓ caculates p+q/q when p=0 and q==undefined
-      ✓ caculates p+q/q when p=0 and q!=undefined
-    weird funcion
-      ✓ return 1 when x>7, y<0
-      ✓ return 1 when z<42
-      ✓ return 1 when z<42 and mode[0]==werw 
-      ✓ return 1 when (x<=7 or y>=0) and z>42 and mode!=strict 
-      ✓ return 1 when (x<=7 or y>=0) and z>42 and mode==strict 
-    fileTest funcion
-      ✓ return false when there is no file under path/fileExists
-      ✓ return false when file in pathContent/file1 has no content
-      ✓ return true when there is file with content in filePath
-    normalize funcion
-      ✓ return raw phone number when match
-      ✓ return input when doesn't match
-    format funcion
-      ✓ return format
-      ✓ return format
-    blackListNumber funcion
-      ✓ return true when area code is 212
-      ✓ return false when area code is not 212
-
-
-  31 passing (21ms)
-

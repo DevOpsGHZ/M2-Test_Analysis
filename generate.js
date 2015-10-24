@@ -19,7 +19,7 @@ function main()
 
 	if( args.length === 0 )
 	{
-		args = ["main.js"];
+		args = ["target.js"];
 	}
 	var filePath = args[0];
 
