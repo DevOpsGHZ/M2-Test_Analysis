@@ -120,11 +120,6 @@ rm stage.txt
 rm staged_file.txt
 echo
 
-rm unitTestResults.txt
-rm coverage.txt
-rm stage.txt
-rm report.txt
-
 exec < /dev/tty
 
 while true; do
