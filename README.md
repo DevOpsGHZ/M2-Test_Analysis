@@ -2,10 +2,10 @@
 ## Test Part
 ### Unit Test
 **Setting up:**   
-We use [mocha](https://mochajs.org/) and [chai](http://chaijs.com/) for unit testing. Install by using command:   
+We use [mocha](https://mochajs.org/) and [chai](http://chaijs.com/) for unit testing. Install  using command:   
 
 	$ npm install -g mocha     
-	$ npm install chai`  
+	$ npm install chai 
 Add following lines in package.json file:     
  "scripts": {   
     "test": "mocha test"   
