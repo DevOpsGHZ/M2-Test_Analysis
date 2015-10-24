@@ -212,6 +212,7 @@ Do you wish to perform this Commit? [Y/n]y
 A successful commit:
 
 ![success](successful.gif)
+
 A rejected commit because of failed unit test:
 
 ![unitFailed](unitTestFail.gif)
