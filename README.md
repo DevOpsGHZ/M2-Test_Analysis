@@ -157,6 +157,15 @@ Functions Coverage is higher than  50 % Pass!
 Lines Coverage is higher than  50 % Pass!
 
 ---------Running JSHint to analyse source code ----------
+security_checking.js: line 9, col 21, Use '===' to compare with '0'.
+security_checking.js: line 29, col 22, Missing semicolon.
+security_checking.js: line 30, col 16, 'i' is already defined.
+security_checking.js: line 35, col 118, Line is too long.
+security_checking.js: line 49, col 16, 'i' is already defined.
+security_checking.js: line 51, col 29, Missing semicolon.
+security_checking.js: line 59, col 25, 'tmp' is already defined.
+
+7 errors
 main.js: line 4, col 9, Use '===' to compare with 'undefined'.
 main.js: line 7, col 15, Use '===' to compare with '0'.
 main.js: line 9, col 17, Use '===' to compare with '0'.
@@ -172,12 +181,12 @@ Do you wish to continue this Commit? [Y/n]y
 security_checking.js - Code: 223 lines, Comment: 48 lines, Ratio:0.22%
 
 -----------------Running Security Checking-----------------
-Files to be committed:  [ 'security_checking.js' ]
+Files to be committed:  [ 'security_checking.js', 'main.js' ]
 
 Suspects detected in security_checking.js!!
  ===> sdofhsaohgojsjsohfuqierqwtklasgoijgjdifgjoiahsodfhoijwjer
 
 Do you wish to perform this Commit? [Y/n]y
 [master 2ac9f1e] update security checking
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ 2 file changed, 6 insertions(+), 1 deletion(-)
 ```
