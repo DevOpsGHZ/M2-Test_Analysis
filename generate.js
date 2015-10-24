@@ -337,6 +337,23 @@ function constraints(filePath)
 					&& operators.indexOf(child.operator) > -1)
 				{
 					
+					if(child.left.type == 'BinaryExpression' && child.left.operator == "%" && params.indexOf(child.left.left.name) > -1)
+					{
+						var expression = buf.substring(child.range[0], child.range[1]);
+						// argument = child.left.arguments[0].raw;	
+						// idx = child.right.value;
+						functionConstraints[funcName].constraints.push( 
+							new Constraint(
+							{
+								ident: child.left.left.name,
+								value: child.left.right.value,
+								funcName: funcName,
+								kind: 'mod',
+								operator : child.left.operator,
+								expression: expression
+							}));
+					}
+
 					if( child.left.type == 'CallExpression' 
 						&& child.left.callee.property.name == 'indexOf')
 					{
@@ -379,24 +396,6 @@ function constraints(filePath)
 								value: rightHand,
 								funcName: funcName,
 								kind: kind,
-								operator : child.operator,
-								expression: expression
-							}));
-					}
-					if( child.left.type == 'Identifier' && child.left.name == 'area')
-					{
-						// console.log(child);
-						var expression = buf.substring(child.range[0], child.range[1]);
-						// var rightHand = buf.substring(child.right.range[0], child.right.range[1])
-						var code = child.right.value;
-
-						functionConstraints[funcName].constraints.push( 
-							new Constraint(
-							{
-								ident: 'phoneNumber',
-								value: '\'1-{0}-458-5294\''.format(code),
-								funcName: funcName,
-								kind: 'phoneNumber',
 								operator : child.operator,
 								expression: expression
 							}));

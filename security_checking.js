@@ -1,21 +1,9 @@
 var esprima = require("esprima");
 var options = {tokens:true, tolerant: true, loc: true, range: true };
 var fs = require("fs");
-var token = "sdofhsaohgojsjsohfuqierqwtklasgoijgjdifgjoiahsodfhoijwjer";
 function main()
 {
-	var args = process.argv.slice(2);
-
-	if( args.length == 0 )
-	{
-		args = ["subject.js"];
-	}
-	var filePath = args[0];
-
-	// checking(filePath);
-	// console.log(process.env.PWD);
 	var git = fs.readFileSync("stage.txt", "utf8");
-	// console.log(git.split('\n'));
 	lines = git.split('\n');
 	flag = 0;
 	for(var i = 0; i < lines.length; i++)
@@ -70,7 +58,7 @@ function main()
 				traverse_json(json_data,function(key, value)
 				{
 					if(typeof value == 'string' && value.indexOf('http') < 0 
-						&& value.length > 20 && value.indexOf(' ') < 0)
+						&& value.indexOf(' ') < 0 && (value.length == 20 || value.length == 40 || value.length ==64))
 					{
 						// console.log(value);	
 						suspects.push(value);
@@ -138,40 +126,14 @@ function checking(filePath)
 	{
 		if( node.type == 'Literal')
 		{
-			// console.log(node.value);
-			if(node.value !== null && node.value.length > 20 && node.value.indexOf(' ') < 0)
+
+			// console.log(node);
+			if(typeof node.value == 'string' && node.value.indexOf(' ') < 0 && (node.value.length == 20 || node.value.length == 40 || node.value.length == 64))
 			{
-				// console.log(node.loc);
 				suspect.push(node.value);
 			}
 		}
-	// 	if( node.type == 'VariableDeclaration' )
-	// 	{
-	// 		// console.log(node.declarations);
-	// 		for(var i = 0; i < node.declarations.length; i++)
-	// 		{
-	// 			if(node.declarations[i].init !== null && node.declarations[i].init.type == 'Literal')
-	// 			{
-	// 				var tmp = node.declarations[i].init.value;
-	// 				console.log(node.declarations[i].init.value);
-	// 				if(tmp !== null && tmp.length > 10)
-	// 				{
-	// 					suspect.push(tmp);
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-
-	// 	if(node.type == 'AssignmentExpression' && node.right.type == 'Literal')
-	// 	{
-	// 		console.log(node.right.value)
-	// 		if(node.right.value > 10)
-	// 		{
-	// 			suspect.push(tmp);
-	// 		}
-	// 	}
 	});
-	// console.log(suspect);
 	return suspect;
 }
 
@@ -207,9 +169,7 @@ function traverseWithCancel(object, visitor)
 	    }
  	 }
 }
-// function process_json(key,value) {
-//     console.log(key + " : "+value);
-// }
+
 
 function traverse_json(o,func) {
     for (var i in o) {
@@ -221,3 +181,9 @@ function traverse_json(o,func) {
 }
 
 main();
+
+exports.main = main;
+exports.checking = checking;
+exports.traverse = traverse;
+exports.traverseWithCancel = traverseWithCancel;
+exports.traverse_json = traverse_json;
