@@ -132,7 +132,7 @@ function checkResult(filePath)
     }
     else
     {
-      var index = buf.indexOf('failing');
+      var index = buf.indexOf('fail');
       if (index == -1)
       {
         return false;

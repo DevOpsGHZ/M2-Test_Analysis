@@ -23,14 +23,14 @@ describe("subject",function(){
 	});
 
 	describe("checkResult function",function(){
-		it("return true when there is failing",function(){
-			mock({"path":{"result":"some failing"}});
+		it("return true when there is fail",function(){
+			mock({"path":{"result":"some fail"}});
 			var result1 = target.checkResult("path/result");
 			expect(result1).to.equal(true);
 			mock.restore();
 		});
 
-		it("return false when there is no failing",function(){
+		it("return false when there is no fail",function(){
 			mock({"path":{"result":"all passing"}});
 			var result2 = target.checkResult("path/result");
 			expect(result2).to.equal(false);
