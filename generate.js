@@ -150,6 +150,11 @@ function generateTestCases(filePath)
 					params[constraint.ident].push(createConcreteIntegerValue(true, constraint.value));
 					params[constraint.ident].push(createConcreteIntegerValue(false, constraint.value));
 				}
+				else if(constraint.kind == 'mod')
+				{
+					params[constraint.ident].push(constraint.value + 1)
+					params[constraint.ident].push(constraint.value - 1)
+				}
 				else if(constraint.kind == 'string')
 				{	
 					var str = createRandomString(10);
