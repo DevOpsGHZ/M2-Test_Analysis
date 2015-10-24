@@ -36,14 +36,14 @@ We use [istanbul](https://gotwarlost.github.io/istanbul/) to measure the coverag
 	node_modules/.bin/istanbul cover test.js
 
 it will show a report like this:
-
-	=============================== Coverage summary ===============================
-	Statements   : 91.15% ( 103/113 )
-	Branches     : 64.29% ( 18/28 )
-	Functions    : 100% ( 5/5 )
-	Lines        : 91.15% ( 103/113 )
-	================================================================================
-
+```
+=============================== Coverage summary ===============================
+Statements   : 66.67% ( 44/66 )
+Branches     : 58.33% ( 28/48 )
+Functions    : 100% ( 4/4 )
+Lines        : 66.67% ( 44/66 )
+================================================================================
+```
 ## Analysis Part
 ### Static Analysis
 
@@ -216,6 +216,10 @@ A successful commit:
 A rejected commit because of failed unit test:
 
 ![unitFailed](gif/unitTestFail.gif)
+
+A rejected commit when coverage below 50%:
+
+![coverage](gif/reject_when_coverage.gif)
 
 Decide whether to reject a commit when JSHint finds errors: [video](https://drive.google.com/file/d/0B87f7178bIHnR2gwYjBrUGpyYlE/view?usp=sharing)
 
