@@ -315,19 +315,6 @@ function constraints(filePath)
 			var params = node.params.map(function(p) {return p.name});
 
 			functionConstraints[funcName] = {constraints:[], params: params};
-			if( params.indexOf('phoneNumber') > -1 )
-			{
-				functionConstraints[funcName].constraints.push(
-					new Constraint(
-					{
-						ident: 'phoneNumber',
-						value: '\'' + faker.phone.phoneNumber()+'\'',
-						funcName: funcName,
-						kind: 'phoneNumber',
-						operator : undefined,
-						expression: undefined
-					}));
-			}
 			// Check for expressions using argument.
 			operators = ['==', '>=', '<=', '!=', '>', '<'];
 
