@@ -11,7 +11,7 @@ npm test > unitTestResults.txt
 cat unitTestResults.txt
 fail="$(grep -o "failing" unitTestResults.txt)"
 # echo $fail
-if [[ "$fail" == "failing" ]]; then
+if [[ "$fail" == *"failing"* ]]; then
 	echo "UnitTest fails, commit reject!"
     rm unitTestResults.txt
 	exit 1
@@ -73,9 +73,10 @@ jshintResults=jshintResults.txt
 if [ -e "$jshintResults" ]; then
     cat jshintResults.txt
     errors="$(grep -o "errors" jshintResults.txt)"
+    # echo $errors
     warnings="$(grep -o "warnings" jshintResults.txt)"
 
-    if [[ "$errors" == "errors" ]]; then
+    if [[ "$errors" == *"errors"* ]]; then
         echo "JsHint errors in source file!"
         rm jshintResults.txt
         exec < /dev/tty
@@ -120,16 +121,16 @@ rm stage.txt
 rm staged_file.txt
 echo
 
-exec < /dev/tty
+# exec < /dev/tty
 
-while true; do
-    read -p "Do you wish to perform this Commit? [Y/n]" yn
-    if [ "$yn" = "" ]; then
-        yn='Y'
-    fi
-    case $yn in
-        [Yy]* ) break;;
-        [Nn]* ) echo "Commit discard!";exit 1;;
-    * ) echo "Please answer yes or no.";;
-    esac
-done
+# while true; do
+#     read -p "Do you wish to perform this Commit? [Y/n]" yn
+#     if [ "$yn" = "" ]; then
+#         yn='Y'
+#     fi
+#     case $yn in
+#         [Yy]* ) break;;
+#         [Nn]* ) echo "Commit discard!";exit 1;;
+#     * ) echo "Please answer yes or no.";;
+#     esac
+# done
