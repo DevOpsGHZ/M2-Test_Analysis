@@ -1,7 +1,6 @@
 var esprima = require("esprima");
 var options = {tokens:true, tolerant: true, loc: true, range: true };
 var fs = require("fs");
-// var token = "sdofhsaohgojsjsohfuqierqwtklasgoijgjdifgjoiahsodfhoijwjer";
 function main()
 {
 	var git = fs.readFileSync("stage.txt", "utf8");
@@ -127,7 +126,9 @@ function checking(filePath)
 	{
 		if( node.type == 'Literal')
 		{
-			if(node.value !== null && node.value.indexOf(' ') < 0 && (node.value.length == 20 || node.value.length == 40 || node.value.length == 64))
+
+			// console.log(node);
+			if(typeof node.value == 'string' && node.value.indexOf(' ') < 0 && (node.value.length == 20 || node.value.length == 40 || node.value.length == 64))
 			{
 				suspect.push(node.value);
 			}
@@ -179,7 +180,7 @@ function traverse_json(o,func) {
     }
 }
 
-// main();
+main();
 
 exports.main = main;
 exports.checking = checking;
