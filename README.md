@@ -210,8 +210,10 @@ Do you wish to perform this Commit? [Y/n]y
 
 ## Screencasts
 A successful commit:
+
 ![success](successful.gif)
 A rejected commit because of failed unit test:
+
 ![unitFailed](unitTestFail.gif)
 
 Decide whether to reject a commit when JSHint finds errors: [video](https://drive.google.com/file/d/0B87f7178bIHnR2gwYjBrUGpyYlE/view?usp=sharing)
