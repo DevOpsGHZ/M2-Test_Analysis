@@ -218,7 +218,7 @@ Do you wish to perform this Commit? [Y/n]y
 ## Screencasts
 A successful commit:
 
-![success](gif/successful.gif)
+![success](gif/all_successful.gif)
 
 A rejected commit because of failed unit test:
 
