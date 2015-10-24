@@ -337,6 +337,23 @@ function constraints(filePath)
 					&& operators.indexOf(child.operator) > -1)
 				{
 					
+					if(child.left.type == 'BinaryExpression' && child.left.operator == "%" && params.indexOf(child.left.left.name) > -1)
+					{
+						var expression = buf.substring(child.range[0], child.range[1]);
+						// argument = child.left.arguments[0].raw;	
+						// idx = child.right.value;
+						functionConstraints[funcName].constraints.push( 
+							new Constraint(
+							{
+								ident: child.left.left.name,
+								value: child.left.right.value,
+								funcName: funcName,
+								kind: 'mod',
+								operator : child.left.operator,
+								expression: expression
+							}));
+					}
+
 					if( child.left.type == 'CallExpression' 
 						&& child.left.callee.property.name == 'indexOf')
 					{
