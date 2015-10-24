@@ -1,11 +1,12 @@
 # M2-Test_Analysis
-## Unit Test
+## Test Part
+### Unit Test
 **Setting up:**   
-`npm install -g mocha`      
-`npm install chai`       
-`mkdir test`  
-`touch test/test.js`    
-add following lines in package.json file:     
+We use [mocha](https://mochajs.org/) and [chai](http://chaijs.com/) for unit testing. Install by using command:   
+
+	$ npm install -g mocha     
+	$ npm install chai`  
+Add following lines in package.json file:     
  "scripts": {   
     "test": "mocha test"   
   }
@@ -13,33 +14,13 @@ add following lines in package.json file:
  "dependencies": {              
     "chai": "\*",    
     "mocha": "\*"    
-    }
-    
+    }    
+**Testing**  
+Put the `TargetTest.js` in folder `test` and use command
 
-**Write unit tests:**    
-In test/test.js file, we wrote 20 unit test for subject.js   
-**Unit test report:**   
-run `npm test`  to get the report:   
+	$ npm test
+to perform the test and show the result:
 ![unitReport](unitReport.png)
-
-**Extract the result:**  
-write main.js to parse the report and extract the result.    
-run `node main.js` will tell the result if all unit tests passed:
-![unitResult](unitResult.png)
-
-=======
-
-## Test Part
-### Unit Test
-
-We use [mocha](https://mochajs.org/) for unit testing. Install by using command:
-
-	$ npm install -g mocha
-
-Put the `unitTest.js` in folder `test` and use command
-
-	npm test
-to perform the test and show the result.
 
 
 ### Test Coverage

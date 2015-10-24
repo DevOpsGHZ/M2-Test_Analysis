@@ -64,6 +64,16 @@ describe("subject",function(){
 			var date2=target.getTomorrowDate(2012,2,29);
 			expect(date2).to.equal("2012/3/1");
 		});
+		it("return 2012/2/29 when input 2012,2,28",function(){
+			var date2=target.getTomorrowDate(2012,2,28);
+			expect(date2).to.equal("2012/2/29");
+		});
+		it("return 2015/3/1 when input 2015,2,28",function(){
+			var date2=target.getTomorrowDate(2015,2,28);
+			expect(date2).to.equal("2015/3/1");
+		});
+
+
 	});
 	describe("extractDate function",function(){
 		it("return {year:2015,month:10,day:23} when input 2015/10/23",function(){
